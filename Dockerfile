@@ -3,8 +3,9 @@ MAINTAINER "Xavier Garnier"
 
 ENV VERSION=1.3
 ENV DOWNLOAD_URL=https://ltb-project.org/archives/ltb-project-self-service-password-${VERSION}.tar.gz
+ENV SERVERNAME=localhost
 
-COPY apache.conf /etc/apache2/sites-available/self-service-password.conf
+COPY apache.conf /apache.conf
 
 RUN set -x \
     && apt-get update \
@@ -18,6 +19,7 @@ RUN set -x \
     tar zxvf ssp.tgz && \
     mv ltb-project-self-service-password-${VERSION} /usr/local/self-service-password && \
     chown -R www-data:www-data /usr/local/self-service-password && chmod 750 -R /usr/local/self-service-password && \
+    cat /apache.conf | envsubst > /etc/apache2/sites-available/self-service-password.conf && \
     a2ensite self-service-password
 
 COPY config.php /usr/local/self-service-password/conf/config.inc.php
