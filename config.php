@@ -257,11 +257,14 @@ $allowed_lang = array();
 $show_menu = getenv('SHOW_MENU') === "true" ?: true; getenv('HASH_OPTIONS_CRYPT_SALT_PREFIX') ?:
 
 # Logo
-$logo = getenv('LOGO') ?: "images/ltb-logo.png";
+if (getenv('LOGO') != "false") {
+    $logo = getenv('LOGO') ?: "images/ltb-logo.png";
+}
 
 # Background image
-$background_image = getenv('BACKGROUND_IMAGE') ?: "images/unsplash-space.jpeg";
-
+if (getenv('BACKGROUND_IMAGE') != "false") {
+    $background_image = getenv('BACKGROUND_IMAGE') ?: "images/unsplash-space.jpeg";
+}
 # Where to log password resets - Make sure apache has write permission
 # By default, they are logged in Apache log
 #$reset_request_log = "/var/log/self-service-password";
