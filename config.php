@@ -152,7 +152,7 @@ $notify_on_sshkey_change = getenv('NOTIFY_ON_SSHKEY_CHANGE') === "true" ?: false
 # Use questions/answers?
 # true (default)
 # false
-$use_questions = getenv('USE_QUESTIONS') === "true" ?: true;
+$use_questions = getenv('USE_QUESTIONS') === "true" ?: false;
 
 # Answer attribute should be hidden to users!
 $answer_objectClass = getenv('ANSWER_OBJECTCLASS') ?: "extensibleObject";
@@ -211,7 +211,7 @@ $mail_newline = PHP_EOL;
 
 ## SMS
 # Use sms
-$use_sms = getenv('USE_SMS') === "true" ?: true;
+$use_sms = getenv('USE_SMS') === "true" ?: false;
 # SMS method (mail, api)
 $sms_method = getenv('SMS_METHOD') ?: "mail";
 $sms_api_lib = getenv('SMS_API_LIB') ?: "lib/smsapi.inc.php";
@@ -257,14 +257,11 @@ $allowed_lang = array();
 $show_menu = getenv('SHOW_MENU') === "true" ?: true; getenv('HASH_OPTIONS_CRYPT_SALT_PREFIX') ?:
 
 # Logo
-if (getenv('LOGO') != "false") {
-    $logo = getenv('LOGO') ?: "images/ltb-logo.png";
-}
+$logo = getenv('LOGO') ?: "";
 
 # Background image
-if (getenv('BACKGROUND_IMAGE') != "false") {
-    $background_image = getenv('BACKGROUND_IMAGE') ?: "images/unsplash-space.jpeg";
-}
+$background_image = getenv('BACKGROUND_IMAGE') ?: "";
+
 # Where to log password resets - Make sure apache has write permission
 # By default, they are logged in Apache log
 #$reset_request_log = "/var/log/self-service-password";
